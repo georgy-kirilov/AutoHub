@@ -4,7 +4,7 @@
 
     using AutoHub.Data.Common.Models;
     using AutoHub.Data.Models;
-
+    using AutoHub.Data.Models.Base;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
@@ -20,6 +20,32 @@
             : base(options)
         {
         }
+
+        public DbSet<Advert> Adverts { get; set; }
+
+        public DbSet<BodyStyle> BodyStyles { get; set; }
+
+        public DbSet<Brand> Brands { get; set; }
+
+        public DbSet<Color> Colors { get; set; }
+
+        public DbSet<Condition> Conditions { get; set; }
+
+        public DbSet<Engine> Engines { get; set; }
+
+        public DbSet<EuroStandard> EuroStandards { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
+        public DbSet<Model> Models { get; set; }
+
+        public DbSet<Region> Regions { get; set; }
+
+        public DbSet<RemoteProvider> RemoteProviders { get; set; }
+
+        public DbSet<Town> Towns { get; set; }
+
+        public DbSet<Transmission> Transmissions { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -44,7 +70,36 @@
         {
             base.OnModelCreating(builder);
 
+            builder
+                .Entity<Advert>()
+                .HasIndex(a => new { a.RemoteProviderId, a.RemoteId })
+                .IsUnique();
+
+            builder
+                .Entity<Brand>()
+                .HasMany(brand => brand.Models)
+                .WithOne(model => model.Brand)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Region>()
+                .HasMany(region => region.Towns)
+                .WithOne(town => town.Region)
+                .OnDelete(DeleteBehavior.Restrict);
+
             RenameDefaultIdentityModels(builder);
+
+            SetUniqueConstraints(
+                                builder,
+                                typeof(BodyStyle),
+                                typeof(Brand),
+                                typeof(Color),
+                                typeof(Condition),
+                                typeof(Engine),
+                                typeof(EuroStandard),
+                                typeof(Region),
+                                typeof(RemoteProvider),
+                                typeof(Transmission));
 
             this.ConfigureUserIdentityRelations(builder);
 
@@ -74,6 +129,22 @@
             where T : class, IDeletable
         {
             builder.Entity<T>().HasQueryFilter(e => !e.IsDeleted);
+        }
+
+        private static void SetUniqueConstraints(ModelBuilder modelBuilder, params Type[] types)
+        {
+            foreach (Type type in types)
+            {
+                if (type.IsSubclassOf(typeof(BaseNameableOneToManyAdvertsModel)))
+                {
+                    modelBuilder.Entity(type).HasIndex(nameof(BaseNameableOneToManyAdvertsModel.Name)).IsUnique();
+                }
+
+                if (type.IsSubclassOf(typeof(BaseTypeableOneToManyAdvertsModel)))
+                {
+                    modelBuilder.Entity(type).HasIndex(nameof(BaseTypeableOneToManyAdvertsModel.Type)).IsUnique();
+                }
+            }
         }
 
         private static void RenameDefaultIdentityModels(ModelBuilder builder)
