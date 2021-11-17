@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.0-preview1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.354" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AutoHub.Common\AutoHub.Common.csproj" />
+    <ProjectReference Include="..\..\Data\AutoHub.Data.Common\AutoHub.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Data\AutoHub.Data.Models\AutoHub.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\AutoHub.Data\AutoHub.Data.csproj" />
+    <ProjectReference Include="..\..\Services\AutoHub.Services.Data\AutoHub.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\AutoHub.Services.Mapping\AutoHub.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\AutoHub.Services.Messaging\AutoHub.Services.Messaging.csproj" />
+    <ProjectReference Include="..\..\Services\AutoHub.Services\AutoHub.Services.csproj" />
+  </ItemGroup>
+
+</Project>
