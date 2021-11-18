@@ -22,6 +22,8 @@
             var seeders = new List<ISeeder>
             {
                 new RolesSeeder(),
+                new EnginesSeeder(),
+                new BodyStylesSeeder(),
             };
 
             foreach (var seeder in seeders)
