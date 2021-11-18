@@ -24,6 +24,9 @@
                 new RolesSeeder(),
                 new EnginesSeeder(),
                 new BodyStylesSeeder(),
+                new TransmissionsSeeder(),
+                new ConditionsSeeder(),
+                new EuroStandardsSeeder(),
             };
 
             foreach (var seeder in seeders)

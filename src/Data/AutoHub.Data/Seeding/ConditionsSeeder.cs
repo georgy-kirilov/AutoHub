@@ -5,10 +5,10 @@
     using AutoHub.Data.Seeding.Common;
     using AutoHub.Data.Seeding.MandatoryEntityValues;
 
-    public class EnginesSeeder : BaseTypeableModelsSeeder<Engine>
+    public class ConditionsSeeder : BaseTypeableModelsSeeder<Condition>
     {
-        public EnginesSeeder()
-            : base(Extensions.GetConstants<Engines, string>())
+        public ConditionsSeeder()
+            : base(Extensions.GetConstants<Conditions, string>())
         {
         }
     }
