@@ -27,6 +27,9 @@
                 new TransmissionsSeeder(),
                 new ConditionsSeeder(),
                 new EuroStandardsSeeder(),
+                new BrandsSeeder(),
+                new ColorsSeeder(),
+                new RegionsSeeder(),
             };
 
             foreach (var seeder in seeders)
