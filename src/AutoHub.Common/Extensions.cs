@@ -19,6 +19,8 @@
             this ModelStateDictionary modelState,
             IEnumerable<KeyValuePair<string, List<string>>> errorsByPropertyName)
         {
+            Console.WriteLine(string.Join("\n", modelState));
+
             foreach (var property in errorsByPropertyName)
             {
                 foreach (string error in property.Value)

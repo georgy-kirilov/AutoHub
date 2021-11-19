@@ -55,6 +55,18 @@
         [Required]
         public int EuroStandardId { get; set; }
 
-        public IEnumerable<SelectListItem> Engines { get; set; }
+        public IEnumerable<SelectListItem> EngineItems { get; set; }
+
+        public IEnumerable<SelectListItem> TransmissionItems { get; set; }
+
+        public IEnumerable<SelectListItem> BodyStyleItems { get; set; }
+
+        public IEnumerable<SelectListItem> ColorItems { get; set; }
+
+        public IEnumerable<SelectListItem> BrandItems { get; set; }
+
+        public IEnumerable<SelectListItem> RegionItems { get; set; }
+
+        public IEnumerable<SelectListItem> ConditionItems { get; set; }
     }
 }
