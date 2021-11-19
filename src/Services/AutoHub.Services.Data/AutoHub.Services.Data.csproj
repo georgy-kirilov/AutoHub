@@ -20,8 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AutoHub.Common\AutoHub.Common.csproj" />
     <ProjectReference Include="..\..\Data\AutoHub.Data.Common\AutoHub.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\AutoHub.Data.Models\AutoHub.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\AutoHub.Web.ViewModels\AutoHub.Web.ViewModels.csproj" />
     <ProjectReference Include="..\AutoHub.Services.Mapping\AutoHub.Services.Mapping.csproj" />
   </ItemGroup>
 

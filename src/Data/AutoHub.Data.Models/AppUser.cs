@@ -12,6 +12,7 @@
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.Adverts = new HashSet<Advert>();
         }
 
         public DateTime CreatedOn { get; set; }
@@ -27,5 +28,7 @@
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        public virtual ICollection<Advert> Adverts { get; set; }
     }
 }

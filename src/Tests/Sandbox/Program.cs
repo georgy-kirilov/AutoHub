@@ -2,8 +2,6 @@
 {
     using System.Diagnostics;
 
-    using CommandLine;
-
     using AutoHub.Data;
     using AutoHub.Data.Common;
     using AutoHub.Data.Common.Repositories;
@@ -11,7 +9,7 @@
     using AutoHub.Data.Repositories;
     using AutoHub.Data.Seeding;
     using AutoHub.Services.Messaging;
-
+    using CommandLine;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
