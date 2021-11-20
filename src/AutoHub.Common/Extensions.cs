@@ -25,7 +25,7 @@
             {
                 foreach (string error in property.Value)
                 {
-                    modelState[property.Key].Errors.Add(error);
+                    modelState.AddModelError(property.Key, error);
                 }
             }
         }

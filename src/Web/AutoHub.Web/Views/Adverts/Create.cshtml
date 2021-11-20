@@ -1,7 +1,7 @@
 ﻿@model AutoHub.Web.ViewModels.Adverts.CreateAdvertInputModel
 
 @{
-    const string DefaultSelectListItemText = "Any";
+    const string DefaultSelectListItemText = "No items";
 }
 
 <h1 class="display-2">Create new advert</h1>
@@ -23,11 +23,11 @@
         <span asp-validation-for="Price"></span>
     </div>
     <div class="form-group">
+        <h6>Manufacture date</h6>
+        <hr />
         <label asp-for="ManufactureYear"></label>
         <input asp-for="ManufactureYear" class="form-control"/>
         <span asp-validation-for="ManufactureYear"></span>
-    </div>
-    <div class="form-group">
         <label asp-for="ManufactureMonth"></label>
         <input asp-for="ManufactureMonth" class="form-control"/>
         <span asp-validation-for="ManufactureMonth"></span>
@@ -76,13 +76,15 @@
     <div>
         <label asp-for="ModelId"></label>
         <select asp-for="ModelId" id="models" class="form-control">
-            <option value="">@DefaultSelectListItemText</option>
+            <option value="1">@DefaultSelectListItemText</option>
         </select>
         <span asp-validation-for="ModelId"></span>
     </div>
     <div>
         <label asp-for="TownId"></label>
-        <select asp-for="TownId" id="towns" class="form-control"></select>
+        <select asp-for="TownId" id="towns" class="form-control">
+            <option value="1">@DefaultSelectListItemText</option>
+        </select>
         <span asp-validation-for="TownId"></span>
     </div>
 
