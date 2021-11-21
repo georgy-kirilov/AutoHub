@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using AutoHub.Web.LanguageResources;
+
     public class HorsePowersRangeAttribute : ValidationAttribute
     {
         private readonly int minHorsePowers;
@@ -23,7 +25,7 @@
 
             int horsePowers = (int)value;
 
-            this.ErrorMessage = $"Конските сили трябва да бъдат между {this.minHorsePowers} и {this.maxHorsePowers}";
+            this.ErrorMessage = string.Format(Resource.HorsePowersOutOfRange, this.minHorsePowers, this.maxHorsePowers);
 
             return horsePowers >= this.minHorsePowers && horsePowers <= this.maxHorsePowers;
         }

@@ -4,74 +4,107 @@
 
     using AutoHub.Common;
     using AutoHub.Common.Attributes;
+    using AutoHub.Web.LanguageResources;
+
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class CreateAdvertInputModel
     {
-        [Required]
-        [Display(Name = "Заглавие")]
+        [Display(
+            Name = nameof(Resource.TitleDisplayName),
+            ResourceType = typeof(Resource))]
+        [Required(
+            ErrorMessageResourceName = nameof(Resource.TitleIsRequired),
+            ErrorMessageResourceType = typeof(Resource))]
         public string Title { get; set; }
 
-        [Display(Name = "Описание")]
+        [Display(
+            Name = nameof(Resource.DescriptionDisplayName),
+            ResourceType = typeof(Resource))]
         public string Description { get; set; }
 
-        [Display(Name = "Цена")]
+        [Display(
+            Name = nameof(Resource.PriceDisplayName),
+            ResourceType = typeof(Resource))]
         public decimal? Price { get; set; }
 
         [ManufactureYear]
-        [Display(Name = "Година")]
+        [Display(
+            Name = nameof(Resource.ManufactureYearDisplayName),
+            ResourceType = typeof(Resource))]
         public int ManufactureYear { get; set; }
 
-        [Range(1, 12, ErrorMessage = "Невалиден месец")]
-        [Display(Name = "Месец")]
+        [Display(
+            Name = nameof(Resource.ManufactureMonthDisplayName),
+            ResourceType = typeof(Resource))]
+        [Range(
+            minimum: 1,
+            maximum: 12,
+            ErrorMessageResourceName = nameof(Resource.InvalidMonthErrorMessage),
+            ErrorMessageResourceType = typeof(Resource))]
         public int ManufactureMonth { get; set; }
 
-        [Required]
-        [Display(Name = "Пробег")]
+        [Display(
+            Name = nameof(Resource.KilometrageDisplayName),
+            ResourceType = typeof(Resource))]
         public long Kilometrage { get; set; }
 
-        [HorsePowersRange(1, ValidationConstraints.MaxHorsePowers)]
-        [Display(Name = "Конски сили")]
+        [Display(
+            Name = nameof(Resource.HorsePowersDisplayName),
+            ResourceType = typeof(Resource))]
+        [HorsePowersRange(
+            minHorsePowers: 1,
+            ValidationConstraints.MaxHorsePowers)]
         public int HorsePowers { get; set; }
 
-        [Required]
-        [Display(Name = "Металик")]
+        [Display(
+            Name = nameof(Resource.IsExteriorMetallicDisplayName),
+            ResourceType = typeof(Resource))]
         public bool IsExteriorMetallic { get; set; }
 
-        [Required]
-        [Display(Name = "Нов внос")]
+        [Display(
+            Name = nameof(Resource.IsNewImportDisplayName),
+            ResourceType = typeof(Resource))]
         public bool IsNewImport { get; set; }
 
-        [Required]
-        [Display(Name = "Модел")]
+        [Display(
+            Name = nameof(Resource.ModelDisplayName),
+            ResourceType = typeof(Resource))]
         public int ModelId { get; set; }
 
-        [Required]
-        [Display(Name = "Двигател")]
+        [Display(
+            Name = nameof(Resource.EngineDisplayName),
+            ResourceType = typeof(Resource))]
         public int EngineId { get; set; }
 
-        [Required]
-        [Display(Name = "Тип")]
+        [Display(
+            Name = nameof(Resource.BodyStyleDisplayName),
+            ResourceType = typeof(Resource))]
         public int BodyStyleId { get; set; }
 
-        [Required]
-        [Display(Name = "Скоростна кутия")]
+        [Display(
+            Name = nameof(Resource.TransmissionDisplayName),
+            ResourceType = typeof(Resource))]
         public int TransmissionId { get; set; }
 
-        [Required]
-        [Display(Name = "Цвят")]
+        [Display(
+            Name = nameof(Resource.ColorDisplayName),
+            ResourceType = typeof(Resource))]
         public int ColorId { get; set; }
 
-        [Required]
-        [Display(Name = "Населено място")]
+        [Display(
+            Name = nameof(Resource.TownDisplayName),
+            ResourceType = typeof(Resource))]
         public int TownId { get; set; }
 
-        [Required]
-        [Display(Name = "Състояние")]
+        [Display(
+            Name = nameof(Resource.ConditionDisplayName),
+            ResourceType = typeof(Resource))]
         public int ConditionId { get; set; }
 
-        [Required]
-        [Display(Name = "Евро стандарт")]
+        [Display(
+            Name = nameof(Resource.EuroStandardDisplayName),
+            ResourceType = typeof(Resource))]
         public int EuroStandardId { get; set; }
 
         public IEnumerable<SelectListItem> EngineItems { get; set; }

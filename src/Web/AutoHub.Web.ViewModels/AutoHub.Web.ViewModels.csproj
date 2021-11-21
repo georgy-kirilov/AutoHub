@@ -30,6 +30,7 @@
     <ProjectReference Include="..\..\AutoHub.Common\AutoHub.Common.csproj" />
     <ProjectReference Include="..\..\Data\AutoHub.Data.Models\AutoHub.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\AutoHub.Services.Mapping\AutoHub.Services.Mapping.csproj" />
+    <ProjectReference Include="..\AutoHub.Web.LanguageResources\AutoHub.Web.LanguageResources.csproj" />
   </ItemGroup>
 
 </Project>
