@@ -7,39 +7,47 @@
 <h1 class="display-2">Create new advert</h1>
 
 <form asp-controller="Adverts" asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control"/>
-        <span asp-validation-for="Title"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Price"></label>
-        <input asp-for="Price" class="form-control"/>
-        <span asp-validation-for="Price"></span>
-    </div>
-    <div class="form-group">
-        <h6>Manufacture date</h6>
+    <div>
+        <h5>Обща информация</h5>
         <hr />
-        <label asp-for="ManufactureYear"></label>
-        <input asp-for="ManufactureYear" class="form-control"/>
-        <span asp-validation-for="ManufactureYear"></span>
-        <label asp-for="ManufactureMonth"></label>
-        <input asp-for="ManufactureMonth" class="form-control"/>
-        <span asp-validation-for="ManufactureMonth"></span>
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description"></span>
+        </div>
+    </div>
+    <div>
+        <h5>Дата на производство</h5>
+        <hr />
+        <div class="form-group">
+            <label asp-for="ManufactureYear"></label>
+            <input asp-for="ManufactureYear" class="form-control" />
+            <span asp-validation-for="ManufactureYear"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ManufactureMonth"></label>
+            <input asp-for="ManufactureMonth" class="form-control" />
+            <span asp-validation-for="ManufactureMonth"></span>
+        </div>
     </div>
     <div class="form-group">
         <label asp-for="Kilometrage"></label>
-        <input asp-for="Kilometrage" class="form-control"/>
+        <input asp-for="Kilometrage" class="form-control" />
         <span asp-validation-for="Kilometrage"></span>
     </div>
     <div class="form-group">
         <label asp-for="HorsePowers"></label>
-        <input asp-for="HorsePowers" class="form-control"/>
+        <input asp-for="HorsePowers" class="form-control" />
         <span asp-validation-for="HorsePowers"></span>
     </div>
     <div class="form-group">
@@ -59,52 +67,59 @@
     </div>
     <div class="form-group">
         <label asp-for="ConditionId"></label>
-        <select
-            asp-for="ConditionId"
-            asp-items="@Model.ConditionItems"
-            class="form-control">
+        <select asp-for="ConditionId"
+                asp-items="@Model.ConditionItems"
+                class="form-control">
         </select>
         <span asp-validation-for="ConditionId"></span>
     </div>
     <div class="form-group">
-        <label>Brand</label>
-        <select
-            asp-items="@Model.BrandItems"
-            class="form-control"
-            autocomplete="on"
-            onchange="updateModelsByBrand(this)">
+        <label>Марка</label>
+        <select asp-items="@Model.BrandItems"
+                class="form-control"
+                autocomplete="on"
+                onchange="updateModelsByBrand(this)">
         </select>
+        <span></span>
     </div>
-    <div>
+    <div class="form-group">
         <label asp-for="ModelId"></label>
-        <select 
-            asp-for="ModelId"
-            id="models"
-            class="form-control">
-            <option value="1">@DefaultSelectListItemText</option>
+        <select asp-for="ModelId"
+                id="models"
+                class="form-control">
+            <option value="">@DefaultSelectListItemText</option>
         </select>
         <span asp-validation-for="ModelId"></span>
     </div>
     <div class="form-group">
         <label asp-for="BodyStyleId"></label>
-        <select asp-for="BodyStyleId" asp-items="@Model.BodyStyleItems" class="form-control"></select>
+        <select asp-for="BodyStyleId"
+                asp-items="@Model.BodyStyleItems"
+                class="form-control">
+        </select>
         <span asp-validation-for="BodyStyleId"></span>
     </div>
     <div class="form-group">
-        <select asp-items="@Model.RegionItems" class="form-control"></select>
+        <label>Област</label>
+        <select asp-items="@Model.RegionItems"
+                class="form-control"
+                autocomplete="on"
+                onchange="updateTownsByRegion(this)">
+        </select>
+        <span></span>
     </div>
-    <div>
+    <div class="form-group">
         <label asp-for="TownId"></label>
-        <select
-            asp-for="TownId"
-            id="towns"
-            class="form-control">
-            <option value="1">@DefaultSelectListItemText</option>
+        <select asp-for="TownId"
+                id="towns"
+                class="form-control">
+            <option value="">@DefaultSelectListItemText</option>
         </select>
         <span asp-validation-for="TownId"></span>
     </div>
-
-    <input type="submit" value="Create" class="form-control btn btn-info col-md-4"/>
+    <div>
+        <input type="submit" value="Create" class="form-control btn btn-info col-md-4" />
+    </div>
 </form>
 
 <script>
@@ -138,9 +153,10 @@
     function updateSelectElement(id, items) {
         let models = document.querySelector(`#${id}`);
         models.innerHTML = EMPTY_STRING;
-        items.unshift({ name: defaultOptionName, id: EMPTY_STRING });
+        if (items.length == 0) {
+            items.unshift({ name: defaultOptionName, id: EMPTY_STRING });
+        }
         for (let model of items) {
-            console.log(model);
             let option = document.createElement("option");
             option.textContent = model.name;
             option.value = model.name === defaultOptionName ? EMPTY_STRING : model.id;

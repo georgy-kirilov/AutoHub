@@ -56,6 +56,23 @@
         [Authorize]
         public IActionResult Create()
         {
+            var brands = this.brandsRepository.All()
+                .OrderBy(b => b.Name).Select(b => new { b.Id, b.Name }).ToList();
+
+            var brandGroupsByLetter = brands
+                .Select(b => b.Name.First().ToString())
+                .Distinct()
+                .Select(name => new SelectListGroup { Name = name })
+                .ToDictionary(g => g.Name, g => g);
+
+            var regions = this.regionsRepository.All()
+                .OrderBy(r => r.Name).Select(r => new { r.Id, r.Name }).ToList();
+
+            var regionGroupsByLetter = regions.Select(r => r.Name.First().ToString())
+                .Distinct()
+                .Select(name => new SelectListGroup { Name = name })
+                .ToDictionary(g => g.Name, g => g);
+
             var inputModel = new CreateAdvertInputModel
             {
                 EngineItems = this.enginesRepository.All()
@@ -70,11 +87,21 @@
                 ColorItems = this.colorsRepository.All()
                     .ToList().Select(c => new SelectListItem(c.Name, c.Id.ToString())),
 
-                BrandItems = this.brandsRepository.All()
-                    .ToList().Select(b => new SelectListItem(b.Name, b.Id.ToString())),
+                BrandItems = brands
+                    .Select(b => new SelectListItem
+                    {
+                        Text = b.Name,
+                        Value = b.Id.ToString(),
+                        Group = brandGroupsByLetter[b.Name.First().ToString()],
+                    }),
 
-                RegionItems = this.regionsRepository.All()
-                    .ToList().Select(r => new SelectListItem(r.Name, r.Id.ToString())),
+                RegionItems = regions
+                    .Select(r => new SelectListItem
+                    {
+                        Text = r.Name,
+                        Value = r.Id.ToString(),
+                        Group = regionGroupsByLetter[r.Name.First().ToString()],
+                    }),
 
                 ConditionItems = this.conditionsRepository.All()
                     .ToList().Select(c => new SelectListItem(c.Type, c.Id.ToString())),
