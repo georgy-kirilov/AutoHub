@@ -7,7 +7,7 @@
     public class CreateAdvertInputModel
     {
         [Required]
-        [Display(Name = "Заглавие на обявата")]
+        [Display(Name = "Заглавие")]
         public string Title { get; set; }
 
         [Display(Name = "Описание")]

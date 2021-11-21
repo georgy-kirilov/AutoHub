@@ -20,12 +20,16 @@
         {
             Brand brand = this.brandsRepository.All().FirstOrDefault(b => b.Name == brandName);
 
-            if (brand != null)
+            if (brand == null)
             {
-                var model = new Model { Name = modelName, BrandId = brand.Id };
-                await this.modelsRepository.AddAsync(model);
-                await this.modelsRepository.SaveChangesAsync();
+                return;
             }
+
+            Model model = brand.Models.FirstOrDefault(m => m.Name == modelName) 
+                ?? new Model { Name = modelName, BrandId = brand.Id };
+
+            await this.modelsRepository.AddAsync(model);
+            await this.modelsRepository.SaveChangesAsync();
         }
     }
 }

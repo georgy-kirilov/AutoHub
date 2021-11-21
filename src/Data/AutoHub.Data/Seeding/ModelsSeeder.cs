@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using AutoHub.Data.Seeding.MandatoryEntityValues;
+
     using AutoHub.Services.Data;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -18,7 +18,6 @@
 
         public async Task SeedAsync(AppDbContext dbContext, IServiceProvider serviceProvider)
         {
-            Console.WriteLine("In seed");
             var modelsService = serviceProvider.GetRequiredService<IModelsService>();
 
             foreach (var brand in this.modelsByBrand)

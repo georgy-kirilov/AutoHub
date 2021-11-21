@@ -1,7 +1,7 @@
 ﻿@model AutoHub.Web.ViewModels.Adverts.CreateAdvertInputModel
 
 @{
-    const string DefaultSelectListItemText = "No items";
+    const string DefaultSelectListItemText = "Няма";
 }
 
 <h1 class="display-2">Create new advert</h1>
@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label asp-for="Description"></label>
-            <textarea asp-for="Description" class="form-control"></textarea>
+            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
             <span asp-validation-for="Description"></span>
         </div>
     </div>
@@ -67,18 +67,12 @@
     </div>
     <div class="form-group">
         <label asp-for="ConditionId"></label>
-        <select asp-for="ConditionId"
-                asp-items="@Model.ConditionItems"
-                class="form-control">
-        </select>
+        <select asp-for="ConditionId" asp-items="@Model.ConditionItems" class="form-control"></select>
         <span asp-validation-for="ConditionId"></span>
     </div>
     <div class="form-group">
         <label>Марка</label>
-        <select asp-items="@Model.BrandItems"
-                class="form-control"
-                autocomplete="on"
-                onchange="updateModelsByBrand(this)">
+        <select asp-items="@Model.BrandItems" class="form-control" autocomplete="on" onchange="updateModelsByBrand(this)">
         </select>
         <span></span>
     </div>
@@ -110,9 +104,10 @@
     </div>
     <div class="form-group">
         <label asp-for="TownId"></label>
-        <select asp-for="TownId"
-                id="towns"
-                class="form-control">
+        <select 
+            asp-for="TownId"
+            id="towns"
+            class="form-control">
             <option value="">@DefaultSelectListItemText</option>
         </select>
         <span asp-validation-for="TownId"></span>
