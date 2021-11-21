@@ -63,10 +63,11 @@
 
         public IEnumerable<SelectListItem> ColorItems { get; set; }
 
+        public IEnumerable<SelectListItem> ConditionItems { get; set; }
+
         public IEnumerable<SelectListItem> BrandItems { get; set; }
 
         public IEnumerable<SelectListItem> RegionItems { get; set; }
 
-        public IEnumerable<SelectListItem> ConditionItems { get; set; }
     }
 }

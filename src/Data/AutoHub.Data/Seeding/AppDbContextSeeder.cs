@@ -1,5 +1,7 @@
 ﻿namespace AutoHub.Data.Seeding
 {
+    using AutoHub.Data.Seeding.MandatoryEntityValues;
+
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
@@ -30,6 +32,7 @@
                 new BrandsSeeder(),
                 new ColorsSeeder(),
                 new RegionsSeeder(),
+                new ModelsSeeder(Models.ModelsByBrand),
             };
 
             foreach (var seeder in seeders)

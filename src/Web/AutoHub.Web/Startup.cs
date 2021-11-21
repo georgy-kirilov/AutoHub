@@ -59,6 +59,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IAdvertsService, AdvertsService>();
+            services.AddTransient<IModelsService, ModelsService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

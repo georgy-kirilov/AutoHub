@@ -59,11 +59,31 @@
     </div>
     <div class="form-group">
         <label asp-for="ConditionId"></label>
-        <select asp-for="ConditionId" asp-items="@Model.ConditionItems" class="form-control"></select>
+        <select
+            asp-for="ConditionId"
+            asp-items="@Model.ConditionItems"
+            class="form-control">
+        </select>
         <span asp-validation-for="ConditionId"></span>
     </div>
     <div class="form-group">
-        <select asp-items="@Model.BrandItems" class="form-control"></select>
+        <label>Brand</label>
+        <select
+            asp-items="@Model.BrandItems"
+            class="form-control"
+            autocomplete="on"
+            onchange="updateModelsByBrand(this)">
+        </select>
+    </div>
+    <div>
+        <label asp-for="ModelId"></label>
+        <select 
+            asp-for="ModelId"
+            id="models"
+            class="form-control">
+            <option value="1">@DefaultSelectListItemText</option>
+        </select>
+        <span asp-validation-for="ModelId"></span>
     </div>
     <div class="form-group">
         <label asp-for="BodyStyleId"></label>
@@ -74,15 +94,11 @@
         <select asp-items="@Model.RegionItems" class="form-control"></select>
     </div>
     <div>
-        <label asp-for="ModelId"></label>
-        <select asp-for="ModelId" id="models" class="form-control">
-            <option value="1">@DefaultSelectListItemText</option>
-        </select>
-        <span asp-validation-for="ModelId"></span>
-    </div>
-    <div>
         <label asp-for="TownId"></label>
-        <select asp-for="TownId" id="towns" class="form-control">
+        <select
+            asp-for="TownId"
+            id="towns"
+            class="form-control">
             <option value="1">@DefaultSelectListItemText</option>
         </select>
         <span asp-validation-for="TownId"></span>
@@ -92,26 +108,28 @@
 </form>
 
 <script>
+    const EMPTY_STRING = "";
     const defaultOptionName = "@Html.Raw(DefaultSelectListItemText)";
     const token = "XXXXXXXX_XXXXXXXX_XXXXXXXX_XXXXXXX";
 
     function updateModelsByBrand(sender) {
-        const data = { BrandId: sender?.value };
-        sendPostRequest("/Adverts/GetModelsByBrand", data, (res) => updateSelectElement("models", res));
+        let brandId = sender?.value;
+        let url = `/Adverts/GetModelsByBrand?BrandId=${brandId}`;
+        sendGetRequest(url, res => updateSelectElement("models", res));
     }
 
     function updateTownsByRegion(sender) {
-        const data = { RegionId: sender?.value };
-        sendPostRequest("/Adverts/GetTownsByRegion", data, (res) => updateSelectElement("towns", res));
+        let regionId = sender?.value;
+        let url = `/Adverts/GetTownsByRegion?RegionId=${regionId}`;
+        sendGetRequest(url, res => updateSelectElement("towns", res));
     }
 
-    function sendPostRequest(url, data, onSuccess) {
+    function sendGetRequest(url, onSuccess) {
         $.ajax({
             url: url,
-            type: "POST",
-            data: JSON.stringify(data),
-            contentType: "application/json; charset=utf-8",
+            type: "GET",
             dataType: "json",
+            contentType: "application/json; charset=utf-8",
             headers: { "X-CSRF-TOKEN": token },
             success: (res) => onSuccess(res),
         });
@@ -119,12 +137,13 @@
 
     function updateSelectElement(id, items) {
         let models = document.querySelector(`#${id}`);
-        models.innerHTML = STRING_EMPTY;
-        items.unshift({ name: defaultOptionName, id: STRING_EMPTY });
+        models.innerHTML = EMPTY_STRING;
+        items.unshift({ name: defaultOptionName, id: EMPTY_STRING });
         for (let model of items) {
+            console.log(model);
             let option = document.createElement("option");
             option.textContent = model.name;
-            option.value = model.name === defaultOptionName ? STRING_EMPTY : model.id;
+            option.value = model.name === defaultOptionName ? EMPTY_STRING : model.id;
             models.appendChild(option);
         }
     }

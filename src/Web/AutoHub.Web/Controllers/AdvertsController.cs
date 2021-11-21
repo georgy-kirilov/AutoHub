@@ -108,17 +108,21 @@
             return this.RedirectToAction(nameof(this.ById), advertId);
         }
 
-        [HttpPost]
-        public ActionResult<IEnumerable<string>> GetModelsByBrand([FromBody] GetModelsByBrandInputModel input)
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> GetModelsByBrand(GetModelsByBrandInputModel input)
         {
-            var models = this.modelsRepository.All().Where(m => m.BrandId == input.BrandId).ToList();
+            var models = this.modelsRepository.All()
+                .Where(m => m.BrandId == input.BrandId).Select(m => new { m.Id, m.Name }).ToList();
+
             return this.Ok(models);
         }
 
-        [HttpPost]
-        public ActionResult<IEnumerable<string>> GetTownsByRegion([FromBody] GetTownsByRegionInputModel input)
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> GetTownsByRegion(GetTownsByRegionInputModel input)
         {
-            var towns = this.townsRepository.All().Where(t => t.RegionId == input.RegionId).ToList();
+            var towns = this.townsRepository.All()
+                .Where(t => t.RegionId == input.RegionId).Select(t => new { t.Id, t.Name }).ToList();
+
             return this.Ok(towns);
         }
     }

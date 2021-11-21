@@ -41,6 +41,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\AutoHub.Common\AutoHub.Common.csproj" />
+    <ProjectReference Include="..\..\Services\AutoHub.Services.Data\AutoHub.Services.Data.csproj" />
     <ProjectReference Include="..\AutoHub.Data.Common\AutoHub.Data.Common.csproj" />
     <ProjectReference Include="..\AutoHub.Data.Models\AutoHub.Data.Models.csproj" />
   </ItemGroup>
