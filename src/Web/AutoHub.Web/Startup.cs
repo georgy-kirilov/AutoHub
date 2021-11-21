@@ -8,6 +8,7 @@
     using AutoHub.Data.Models;
     using AutoHub.Data.Repositories;
     using AutoHub.Data.Seeding;
+    using AutoHub.Services;
     using AutoHub.Services.Data;
     using AutoHub.Services.Mapping;
     using AutoHub.Services.Messaging;
@@ -60,6 +61,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IAdvertsService, AdvertsService>();
             services.AddTransient<IModelsService, ModelsService>();
+            services.AddTransient<IDateTimeService, DateTimeService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

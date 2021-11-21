@@ -26,17 +26,32 @@
             <span asp-validation-for="Description"></span>
         </div>
     </div>
+    <div class="form-group">
+        <input asp-for="IsNewImport" class="form-check-input"/>
+        <label asp-for="IsNewImport"></label>
+        <span asp-validation-for="IsNewImport"></span>
+    </div>
+    <div class="form-group">
+        <input asp-for="IsExteriorMetallic" class="form-check-input"/>
+        <label asp-for="IsExteriorMetallic"></label>
+        <span asp-validation-for="IsExteriorMetallic"></span>
+    </div>
     <div>
         <h5>Дата на производство</h5>
         <hr />
         <div class="form-group">
             <label asp-for="ManufactureYear"></label>
-            <input asp-for="ManufactureYear" class="form-control" />
+            <select
+                asp-for="ManufactureYear"
+                asp-items="@Model.YearItems"
+                class="form-control"
+                autocomplete="on">
+            </select>
             <span asp-validation-for="ManufactureYear"></span>
         </div>
         <div class="form-group">
             <label asp-for="ManufactureMonth"></label>
-            <input asp-for="ManufactureMonth" class="form-control" />
+            <select asp-for="ManufactureMonth" asp-items="@Model.MonthItems" class="form-control"></select>
             <span asp-validation-for="ManufactureMonth"></span>
         </div>
     </div>

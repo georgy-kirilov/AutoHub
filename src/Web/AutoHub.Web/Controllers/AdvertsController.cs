@@ -4,9 +4,11 @@
     using AutoHub.Common.Exceptions;
     using AutoHub.Data.Common.Repositories;
     using AutoHub.Data.Models;
+    using AutoHub.Services;
     using AutoHub.Services.Data;
     using AutoHub.Web.ViewModels.Adverts;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Localization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -22,6 +24,7 @@
         private readonly IDeletableRepository<Condition> conditionsRepository;
         private readonly IDeletableRepository<Town> townsRepository;
         private readonly IDeletableRepository<Model> modelsRepository;
+        private readonly IDateTimeService dateTimeService;
 
         public AdvertsController(
             IAdvertsService advertsService,
@@ -33,7 +36,8 @@
             IDeletableRepository<Region> regionsRepository,
             IDeletableRepository<Condition> conditionsRepository,
             IDeletableRepository<Town> townsRepository,
-            IDeletableRepository<Model> modelsRepository)
+            IDeletableRepository<Model> modelsRepository,
+            IDateTimeService dateTimeService)
         {
             this.advertsService = advertsService;
             this.enginesRepository = enginesRepository;
@@ -45,6 +49,7 @@
             this.conditionsRepository = conditionsRepository;
             this.townsRepository = townsRepository;
             this.modelsRepository = modelsRepository;
+            this.dateTimeService = dateTimeService;
         }
 
         public IActionResult ById(string id)
@@ -72,6 +77,11 @@
                 .Distinct()
                 .Select(name => new SelectListGroup { Name = name })
                 .ToDictionary(g => g.Name, g => g);
+
+            var cultureInfo = this.Request.HttpContext.Features.Get<IRequestCultureFeature>().RequestCulture.Culture;
+
+            var monthItems = this.dateTimeService.GetMonthNamesAndNumbers(cultureInfo)
+                .Select(m => new SelectListItem(m.Key, m.Value.ToString()));
 
             var inputModel = new CreateAdvertInputModel
             {
@@ -105,6 +115,14 @@
 
                 ConditionItems = this.conditionsRepository.All()
                     .ToList().Select(c => new SelectListItem(c.Type, c.Id.ToString())),
+
+                MonthItems = monthItems,
+
+                YearItems = Enumerable.Range(
+                        ValidationConstraints.MinManufactureYear,
+                        DateTime.UtcNow.Year - ValidationConstraints.MinManufactureYear)
+                    .OrderByDescending(x => x)
+                    .Select(x => new SelectListItem(x.ToString(), x.ToString())),
             };
 
             return this.View(inputModel);

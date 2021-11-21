@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using AutoHub.Common;
+    using AutoHub.Common.Attributes;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class CreateAdvertInputModel
@@ -16,11 +18,11 @@
         [Display(Name = "Цена")]
         public decimal? Price { get; set; }
 
-        [Range(1886, 2021)]
+        [ManufactureYear]
         [Display(Name = "Година")]
         public int ManufactureYear { get; set; }
 
-        [Range(1, 12)]
+        [Range(1, 12, ErrorMessage = "Невалиден месец")]
         [Display(Name = "Месец")]
         public int ManufactureMonth { get; set; }
 
@@ -28,14 +30,16 @@
         [Display(Name = "Пробег")]
         public long Kilometrage { get; set; }
 
-        [Required]
+        [HorsePowersRange(1, ValidationConstraints.MaxHorsePowers)]
         [Display(Name = "Конски сили")]
         public int HorsePowers { get; set; }
 
         [Required]
+        [Display(Name = "Металик")]
         public bool IsExteriorMetallic { get; set; }
 
         [Required]
+        [Display(Name = "Нов внос")]
         public bool IsNewImport { get; set; }
 
         [Required]
@@ -84,5 +88,8 @@
 
         public IEnumerable<SelectListItem> RegionItems { get; set; }
 
+        public IEnumerable<SelectListItem> MonthItems { get; set; }
+
+        public IEnumerable<SelectListItem> YearItems { get; set; }
     }
 }
