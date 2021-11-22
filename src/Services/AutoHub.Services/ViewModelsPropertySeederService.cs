@@ -18,6 +18,7 @@
         private readonly IDeletableRepository<Condition> conditionsRepository;
         private readonly IDeletableRepository<Brand> brandsRepository;
         private readonly IDeletableRepository<Region> regionsRepository;
+        private readonly IDeletableRepository<EuroStandard> euroStandardsRepository;
         private readonly IDateTimeService dateTimeService;
 
         public ViewModelsPropertySeederService(
@@ -28,6 +29,7 @@
             IDeletableRepository<Condition> conditionsRepository,
             IDeletableRepository<Brand> brandsRepository,
             IDeletableRepository<Region> regionsRepository,
+            IDeletableRepository<EuroStandard> euroStandardsRepository,
             IDateTimeService dateTimeService)
         {
             this.enginesRepository = enginesRepository;
@@ -37,6 +39,7 @@
             this.conditionsRepository = conditionsRepository;
             this.brandsRepository = brandsRepository;
             this.regionsRepository = regionsRepository;
+            this.euroStandardsRepository = euroStandardsRepository;
             this.dateTimeService = dateTimeService;
         }
 
@@ -101,6 +104,9 @@
                     Value = r.Id.ToString(),
                     Group = regionGroupsByLetter[r.Name.First().ToString()],
                 });
+
+            input.EuroStandardItems = this.euroStandardsRepository.All()
+                .OrderBy(es => es.Type).Select(es => new SelectListItem(es.Type, es.Id.ToString()));
 
             input.MonthItems = monthItems;
 

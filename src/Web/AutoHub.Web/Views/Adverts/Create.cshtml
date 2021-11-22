@@ -2,7 +2,7 @@
 @model AutoHub.Web.ViewModels.Adverts.CreateAdvertInputModel
 
 @{
-    const string DefaultSelectListItemText = "Няма";
+    const string DefaultSelectListItemText = "No items";
 }
 
 <h1 class="display-2">Create new advert</h1>
@@ -81,6 +81,11 @@
         <span asp-validation-for="BodyStyleId" class="text-danger"></span>
     </div>
     <div class="form-group">
+        <label asp-for="EuroStandardId"></label>
+        <select asp-for="EuroStandardId" asp-items="Model.EuroStandardItems" class="form-control mb-2"></select>
+        <span asp-validation-for="EuroStandardId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
         <label>@Resource.RegionDisplayName</label>
         <select asp-items="Model.RegionItems" class="form-control mb-2" autocomplete="on" onchange="updateTownsByRegion(this)"></select>
         <span class="text-danger"></span>
@@ -92,6 +97,20 @@
         </select>
         <span asp-validation-for="TownId" class="text-danger"></span>
     </div>
+
+    <div>
+        <label for="two-doors">2/3</label>
+        <input type="radio" id="two-doors" name="HasFourDoors" value="false" checked>
+    </div>
+    <div>
+        <label for="four-doors">4/5</label>
+        <input type="radio" id="two-doors" name="HasFourDoors" value="false" checked>
+    </div>
+    <div>
+        <input type="radio" id="dewey" name="drone" value="dewey">
+        <label for="dewey">Dewey</label>
+    </div>
+
     <div class="form-group ml-4 mt-4">
         <input asp-for="IsNewImport" class="form-check-input" />
         <label asp-for="IsNewImport"></label>

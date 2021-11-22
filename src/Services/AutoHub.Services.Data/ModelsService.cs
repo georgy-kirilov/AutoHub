@@ -25,7 +25,7 @@
                 return;
             }
 
-            Model model = brand.Models.FirstOrDefault(m => m.Name == modelName) 
+            Model model = brand.Models.FirstOrDefault(m => m.Name == modelName)
                 ?? new Model { Name = modelName, BrandId = brand.Id };
 
             await this.modelsRepository.AddAsync(model);

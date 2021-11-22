@@ -33,6 +33,7 @@
                 new ColorsSeeder(),
                 new RegionsSeeder(),
                 new ModelsSeeder(Models.ModelsByBrand),
+                new TownsSeeder(Towns.TownsByRegion),
             };
 
             foreach (var seeder in seeders)

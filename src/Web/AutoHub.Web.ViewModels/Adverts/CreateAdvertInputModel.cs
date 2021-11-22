@@ -70,6 +70,8 @@
             ResourceType = typeof(Resource))]
         public bool IsNewImport { get; set; }
 
+        public bool HasFourDoors { get; set; }
+
         [Display(
             Name = nameof(Resource.ModelDisplayName),
             ResourceType = typeof(Resource))]
@@ -123,6 +125,8 @@
         public IEnumerable<SelectListItem> BrandItems { get; set; }
 
         public IEnumerable<SelectListItem> RegionItems { get; set; }
+
+        public IEnumerable<SelectListItem> EuroStandardItems { get; set; }
 
         public IEnumerable<SelectListItem> MonthItems { get; set; }
 
