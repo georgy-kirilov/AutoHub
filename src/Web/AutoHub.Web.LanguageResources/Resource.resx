@@ -120,6 +120,9 @@
   <data name="BodyStyleDisplayName" xml:space="preserve">
     <value>Body style</value>
   </data>
+  <data name="BrandDisplayName" xml:space="preserve">
+    <value>Brand</value>
+  </data>
   <data name="ColorDisplayName" xml:space="preserve">
     <value>Color</value>
   </data>
@@ -134,6 +137,12 @@
   </data>
   <data name="EuroStandardDisplayName" xml:space="preserve">
     <value>Euro standard</value>
+  </data>
+  <data name="ExampleDescription" xml:space="preserve">
+    <value>e.g. Timing belt was changed 2 months ago. Insurance is paid up until next January. The car comes with four winter tires. There are some scratches on the back fender</value>
+  </data>
+  <data name="ExampleTitle" xml:space="preserve">
+    <value>e.g. Opel Astra - Red - Great Condition</value>
   </data>
   <data name="HorsePowersDisplayName" xml:space="preserve">
     <value>Horse powers</value>
@@ -167,6 +176,9 @@
   </data>
   <data name="PriceIsNegotiable" xml:space="preserve">
     <value>Price is negotiable</value>
+  </data>
+  <data name="RegionDisplayName" xml:space="preserve">
+    <value>Region</value>
   </data>
   <data name="TitleDisplayName" xml:space="preserve">
     <value>Title</value>

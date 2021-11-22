@@ -62,6 +62,7 @@
             services.AddTransient<IAdvertsService, AdvertsService>();
             services.AddTransient<IModelsService, ModelsService>();
             services.AddTransient<IDateTimeService, DateTimeService>();
+            services.AddTransient<IViewModelsPropertySeederService, ViewModelsPropertySeederService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

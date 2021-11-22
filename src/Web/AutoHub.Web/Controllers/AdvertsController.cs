@@ -25,6 +25,7 @@
         private readonly IDeletableRepository<Town> townsRepository;
         private readonly IDeletableRepository<Model> modelsRepository;
         private readonly IDateTimeService dateTimeService;
+        private readonly IViewModelsPropertySeederService viewModelsPropertySeederService;
 
         public AdvertsController(
             IAdvertsService advertsService,
@@ -37,7 +38,8 @@
             IDeletableRepository<Condition> conditionsRepository,
             IDeletableRepository<Town> townsRepository,
             IDeletableRepository<Model> modelsRepository,
-            IDateTimeService dateTimeService)
+            IDateTimeService dateTimeService,
+            IViewModelsPropertySeederService viewModelsPropertySeederService)
         {
             this.advertsService = advertsService;
             this.enginesRepository = enginesRepository;
@@ -50,6 +52,7 @@
             this.townsRepository = townsRepository;
             this.modelsRepository = modelsRepository;
             this.dateTimeService = dateTimeService;
+            this.viewModelsPropertySeederService = viewModelsPropertySeederService;
         }
 
         public IActionResult ById(string id)
@@ -61,70 +64,8 @@
         [Authorize]
         public IActionResult Create()
         {
-            var brands = this.brandsRepository.All()
-                .OrderBy(b => b.Name).Select(b => new { b.Id, b.Name }).ToList();
-
-            var brandGroupsByLetter = brands
-                .Select(b => b.Name.First().ToString())
-                .Distinct()
-                .Select(name => new SelectListGroup { Name = name })
-                .ToDictionary(g => g.Name, g => g);
-
-            var regions = this.regionsRepository.All()
-                .OrderBy(r => r.Name).Select(r => new { r.Id, r.Name }).ToList();
-
-            var regionGroupsByLetter = regions.Select(r => r.Name.First().ToString())
-                .Distinct()
-                .Select(name => new SelectListGroup { Name = name })
-                .ToDictionary(g => g.Name, g => g);
-
-            var cultureInfo = this.Request.HttpContext.Features.Get<IRequestCultureFeature>().RequestCulture.Culture;
-
-            var monthItems = this.dateTimeService.GetMonthNamesAndNumbers(cultureInfo)
-                .Select(m => new SelectListItem(m.Key, m.Value.ToString()));
-
-            var inputModel = new CreateAdvertInputModel
-            {
-                EngineItems = this.enginesRepository.All()
-                    .ToList().Select(e => new SelectListItem(e.Type, e.Id.ToString())),
-
-                TransmissionItems = this.transmissionsRepository.All()
-                    .ToList().Select(t => new SelectListItem(t.Type, t.Id.ToString())),
-
-                BodyStyleItems = this.bodyStylesRepository.All()
-                    .ToList().Select(bs => new SelectListItem(bs.Name, bs.Id.ToString())),
-
-                ColorItems = this.colorsRepository.All()
-                    .ToList().Select(c => new SelectListItem(c.Name, c.Id.ToString())),
-
-                BrandItems = brands
-                    .Select(b => new SelectListItem
-                    {
-                        Text = b.Name,
-                        Value = b.Id.ToString(),
-                        Group = brandGroupsByLetter[b.Name.First().ToString()],
-                    }),
-
-                RegionItems = regions
-                    .Select(r => new SelectListItem
-                    {
-                        Text = r.Name,
-                        Value = r.Id.ToString(),
-                        Group = regionGroupsByLetter[r.Name.First().ToString()],
-                    }),
-
-                ConditionItems = this.conditionsRepository.All()
-                    .ToList().Select(c => new SelectListItem(c.Type, c.Id.ToString())),
-
-                MonthItems = monthItems,
-
-                YearItems = Enumerable.Range(
-                        ValidationConstraints.MinManufactureYear,
-                        DateTime.UtcNow.Year - ValidationConstraints.MinManufactureYear)
-                    .OrderByDescending(x => x)
-                    .Select(x => new SelectListItem(x.ToString(), x.ToString())),
-            };
-
+            var inputModel = new CreateAdvertInputModel();
+            this.viewModelsPropertySeederService.SeedCreateAdvertInputModel(inputModel);
             return this.View(inputModel);
         }
 
@@ -132,6 +73,8 @@
         [Authorize]
         public async Task<IActionResult> Create(CreateAdvertInputModel input)
         {
+            this.viewModelsPropertySeederService.SeedCreateAdvertInputModel(input);
+
             if (!this.ModelState.IsValid)
             {
                 return this.View(input);

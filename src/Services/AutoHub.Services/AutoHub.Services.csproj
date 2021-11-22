@@ -19,4 +19,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Web\AutoHub.Web.ViewModels\AutoHub.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

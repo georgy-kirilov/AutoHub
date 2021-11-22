@@ -70,6 +70,15 @@ namespace AutoHub.Web.LanguageResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brand.
+        /// </summary>
+        public static string BrandDisplayName {
+            get {
+                return ResourceManager.GetString("BrandDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color.
         /// </summary>
         public static string ColorDisplayName {
@@ -111,6 +120,24 @@ namespace AutoHub.Web.LanguageResources {
         public static string EuroStandardDisplayName {
             get {
                 return ResourceManager.GetString("EuroStandardDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to e.g. Timing belt was changed 2 months ago. Insurance is paid up until next January. The car comes with four winter tires. There are some scratches on the back fender.
+        /// </summary>
+        public static string ExampleDescription {
+            get {
+                return ResourceManager.GetString("ExampleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to e.g. Opel Astra - Red - Great Condition.
+        /// </summary>
+        public static string ExampleTitle {
+            get {
+                return ResourceManager.GetString("ExampleTitle", resourceCulture);
             }
         }
         
@@ -210,6 +237,15 @@ namespace AutoHub.Web.LanguageResources {
         public static string PriceIsNegotiable {
             get {
                 return ResourceManager.GetString("PriceIsNegotiable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Region.
+        /// </summary>
+        public static string RegionDisplayName {
+            get {
+                return ResourceManager.GetString("RegionDisplayName", resourceCulture);
             }
         }
         

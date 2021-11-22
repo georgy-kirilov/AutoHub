@@ -47,6 +47,9 @@
         [Display(
             Name = nameof(Resource.KilometrageDisplayName),
             ResourceType = typeof(Resource))]
+        [Range(
+            minimum: 0,
+            maximum: long.MaxValue)]
         public long Kilometrage { get; set; }
 
         [Display(

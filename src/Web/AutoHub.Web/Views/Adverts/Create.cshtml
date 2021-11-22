@@ -1,4 +1,5 @@
-﻿@model AutoHub.Web.ViewModels.Adverts.CreateAdvertInputModel
+﻿@using AutoHub.Web.LanguageResources
+@model AutoHub.Web.ViewModels.Adverts.CreateAdvertInputModel
 
 @{
     const string DefaultSelectListItemText = "Няма";
@@ -7,125 +8,99 @@
 <h1 class="display-2">Create new advert</h1>
 
 <form asp-controller="Adverts" asp-action="Create" method="post">
-    <div>
-        <h5>Обща информация</h5>
-        <hr />
-        <div class="form-group">
-            <label asp-for="Title"></label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Price"></label>
-            <input asp-for="Price" class="form-control" />
-            <span asp-validation-for="Price"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Description"></label>
-            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
-            <span asp-validation-for="Description"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control mb-2" placeholder="@Resource.ExampleTitle" />
+        <span asp-validation-for="Title" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <input asp-for="IsNewImport" class="form-check-input"/>
-        <label asp-for="IsNewImport"></label>
-        <span asp-validation-for="IsNewImport"></span>
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control mb-2" placeholder="@Resource.PriceIsNegotiable" />
+        <span asp-validation-for="Price" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <input asp-for="IsExteriorMetallic" class="form-check-input"/>
-        <label asp-for="IsExteriorMetallic"></label>
-        <span asp-validation-for="IsExteriorMetallic"></span>
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control mb-2" placeholder="@Resource.ExampleDescription" rows="5"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
     </div>
-    <div>
-        <h5>Дата на производство</h5>
-        <hr />
-        <div class="form-group">
-            <label asp-for="ManufactureYear"></label>
-            <select
-                asp-for="ManufactureYear"
-                asp-items="@Model.YearItems"
-                class="form-control"
-                autocomplete="on">
-            </select>
-            <span asp-validation-for="ManufactureYear"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="ManufactureMonth"></label>
-            <select asp-for="ManufactureMonth" asp-items="@Model.MonthItems" class="form-control"></select>
-            <span asp-validation-for="ManufactureMonth"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="ManufactureYear"></label>
+        <select asp-for="ManufactureYear" asp-items="Model.YearItems" class="form-control mb-2" autocomplete="on"></select>
+        <span asp-validation-for="ManufactureYear" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ManufactureMonth"></label>
+        <select asp-for="ManufactureMonth" asp-items="Model.MonthItems" class="form-control mb-2" autocomplete="on"></select>
+        <span asp-validation-for="ManufactureMonth" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Kilometrage"></label>
-        <input asp-for="Kilometrage" class="form-control" />
-        <span asp-validation-for="Kilometrage"></span>
+        <input asp-for="Kilometrage" class="form-control mb-2" />
+        <span asp-validation-for="Kilometrage" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="HorsePowers"></label>
-        <input asp-for="HorsePowers" class="form-control" />
-        <span asp-validation-for="HorsePowers"></span>
+        <input asp-for="HorsePowers" class="form-control mb-2" />
+        <span asp-validation-for="HorsePowers" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="EngineId"></label>
-        <select asp-for="EngineId" asp-items="@Model.EngineItems" class="form-control"></select>
-        <span asp-validation-for="EngineId"></span>
+        <select asp-for="EngineId" asp-items="Model.EngineItems" class="form-control mb-2"></select>
+        <span asp-validation-for="EngineId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="TransmissionId"></label>
-        <select asp-for="TransmissionId" asp-items="@Model.TransmissionItems" class="form-control"></select>
-        <span asp-validation-for="TransmissionId"></span>
+        <select asp-for="TransmissionId" asp-items="Model.TransmissionItems" class="form-control mb-2"></select>
+        <span asp-validation-for="TransmissionId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="ColorId"></label>
-        <select asp-for="ColorId" asp-items="@Model.ColorItems" class="form-control"></select>
-        <span asp-validation-for="ColorId"></span>
+        <select asp-for="ColorId" asp-items="Model.ColorItems" class="form-control mb-2" autocomplete="on"></select>
+        <span asp-validation-for="ColorId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="ConditionId"></label>
-        <select asp-for="ConditionId" asp-items="@Model.ConditionItems" class="form-control"></select>
-        <span asp-validation-for="ConditionId"></span>
+        <select asp-for="ConditionId" asp-items="Model.ConditionItems" class="form-control  mb-2"></select>
+        <span asp-validation-for="ConditionId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label>Марка</label>
-        <select asp-items="@Model.BrandItems" class="form-control" autocomplete="on" onchange="updateModelsByBrand(this)">
-        </select>
-        <span></span>
+        <select asp-items="Model.BrandItems" class="form-control mb-2" autocomplete="on" onchange="updateModelsByBrand(this)"></select>
+        <span class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="ModelId"></label>
-        <select asp-for="ModelId"
-                id="models"
-                class="form-control">
+        <select asp-for="ModelId" id="models" class="form-control mb-2" autocomplete="on">
             <option value="">@DefaultSelectListItemText</option>
         </select>
-        <span asp-validation-for="ModelId"></span>
+        <span asp-validation-for="ModelId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="BodyStyleId"></label>
-        <select asp-for="BodyStyleId"
-                asp-items="@Model.BodyStyleItems"
-                class="form-control">
-        </select>
-        <span asp-validation-for="BodyStyleId"></span>
+        <select asp-for="BodyStyleId" asp-items="Model.BodyStyleItems" class="form-control mb-2"></select>
+        <span asp-validation-for="BodyStyleId" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label>Област</label>
-        <select asp-items="@Model.RegionItems"
-                class="form-control"
-                autocomplete="on"
-                onchange="updateTownsByRegion(this)">
-        </select>
-        <span></span>
+        <label>@Resource.RegionDisplayName</label>
+        <select asp-items="Model.RegionItems" class="form-control mb-2" autocomplete="on" onchange="updateTownsByRegion(this)"></select>
+        <span class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="TownId"></label>
-        <select 
-            asp-for="TownId"
-            id="towns"
-            class="form-control">
+        <select asp-for="TownId" id="towns" class="form-control mb-2" autocomplete="on">
             <option value="">@DefaultSelectListItemText</option>
         </select>
-        <span asp-validation-for="TownId"></span>
+        <span asp-validation-for="TownId" class="text-danger"></span>
+    </div>
+    <div class="form-group ml-4 mt-4">
+        <input asp-for="IsNewImport" class="form-check-input" />
+        <label asp-for="IsNewImport"></label>
+        <span asp-validation-for="IsNewImport"></span>
+    </div>
+    <div class="form-group ml-4">
+        <input asp-for="IsExteriorMetallic" class="form-check-input" />
+        <label asp-for="IsExteriorMetallic"></label>
+        <span asp-validation-for="IsExteriorMetallic"></span>
     </div>
     <div>
         <input type="submit" value="Create" class="form-control btn btn-info col-md-4" />
