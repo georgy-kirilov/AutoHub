@@ -5,9 +5,9 @@
     const string DefaultSelectListItemText = "No items";
 }
 
-<h1 class="display-2">Create new advert</h1>
+<h1 class="display-4">Create new advert</h1>
 
-<form asp-controller="Adverts" asp-action="Create" method="post">
+<form asp-controller="Adverts" asp-action="Create" class="col-md-6" method="post">
     <div class="form-group">
         <label asp-for="Title"></label>
         <input asp-for="Title" class="form-control mb-2" placeholder="@Resource.ExampleTitle" />
@@ -100,8 +100,8 @@
     <div class="form-group">
         <label asp-for="HasFourDoors"></label>
         <select asp-for="HasFourDoors" class="form-control mb-2">
-            <option value="false" selected>2 (3)</option>
-            <option value="true">4 (5)</option>
+            <option value="false" selected>2/3</option>
+            <option value="true">4/5</option>
         </select>
     </div>
 
@@ -123,7 +123,7 @@
 <script>
     const EMPTY_STRING = "";
     const defaultOptionName = "@Html.Raw(DefaultSelectListItemText)";
-    const token = "XXXXXXXX_XXXXXXXX_XXXXXXXX_XXXXXXX";
+    const token = "23DGUIS98NCNSHJPOOOOPX3341UIKLLASD";
 
     function updateModelsByBrand(sender) {
         let brandId = sender?.value;

@@ -1,4 +1,8 @@
 ﻿@using AutoHub.Common
+@using AutoHub.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> signInManager
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +30,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (this.signInManager.IsSignedIn(this.User))
+                        {
+                           <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Adverts" asp-action="Create">New advert</a>
+                           </li>
+                        }
                     </ul>
                 </div>
             </div>
