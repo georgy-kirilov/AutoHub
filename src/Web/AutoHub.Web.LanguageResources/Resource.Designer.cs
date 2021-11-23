@@ -142,6 +142,15 @@ namespace AutoHub.Web.LanguageResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Doors count.
+        /// </summary>
+        public static string HasFourDoorsDisplayName {
+            get {
+                return ResourceManager.GetString("HasFourDoorsDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Horse powers.
         /// </summary>
         public static string HorsePowersDisplayName {
@@ -246,6 +255,15 @@ namespace AutoHub.Web.LanguageResources {
         public static string RegionDisplayName {
             get {
                 return ResourceManager.GetString("RegionDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Such {0} does not exist.
+        /// </summary>
+        public static string SuchItemDoesNotExistErrorMessageFormat {
+            get {
+                return ResourceManager.GetString("SuchItemDoesNotExistErrorMessageFormat", resourceCulture);
             }
         }
         

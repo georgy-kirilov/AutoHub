@@ -144,6 +144,9 @@
   <data name="ExampleTitle" xml:space="preserve">
     <value>e.g. Opel Astra - Red - Great Condition</value>
   </data>
+  <data name="HasFourDoorsDisplayName" xml:space="preserve">
+    <value>Doors count</value>
+  </data>
   <data name="HorsePowersDisplayName" xml:space="preserve">
     <value>Horse powers</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="RegionDisplayName" xml:space="preserve">
     <value>Region</value>
+  </data>
+  <data name="SuchItemDoesNotExistErrorMessageFormat" xml:space="preserve">
+    <value>Such {0} does not exist</value>
   </data>
   <data name="TitleDisplayName" xml:space="preserve">
     <value>Title</value>

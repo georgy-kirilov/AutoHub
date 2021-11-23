@@ -6,6 +6,7 @@
     using AutoHub.Data.Common.Models;
     using AutoHub.Data.Common.Repositories;
     using AutoHub.Data.Models;
+    using AutoHub.Web.LanguageResources;
     using AutoHub.Web.ViewModels.Adverts;
     using Microsoft.AspNetCore.Identity;
 
@@ -57,7 +58,7 @@
 
             var errorsByPropertyName = new Dictionary<string, List<string>>();
 
-            string errorMessageFormat = "Such {0} does not exist";
+            string errorMessageFormat = Resource.SuchItemDoesNotExistErrorMessageFormat;
 
             Engine engine = this.enginesRepository.All()
                 .FirstOrDefault(e => e.Id == input.EngineId);
@@ -127,6 +128,7 @@
                 IsNewImport = input.IsNewImport,
                 IsEuroStandardExact = true,
                 IsExteriorMetallic = input.IsExteriorMetallic,
+                HasFourDoors = input.HasFourDoors,
                 Author = author,
                 BodyStyleId = bodyStyle.Id,
                 BrandId = model.BrandId,

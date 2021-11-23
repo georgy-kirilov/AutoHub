@@ -77,7 +77,6 @@
 
             if (!this.ModelState.IsValid)
             {
-                Console.WriteLine("One");
                 return this.View(input);
             }
 
@@ -90,12 +89,10 @@
             }
             catch (InvalidModelStateException ex)
             {
-                Console.WriteLine("Two");
                 this.ModelState.AddErrors(ex.ErrorsByPropertyName);
                 return this.View(input);
             }
 
-            Console.WriteLine("Three");
             return this.RedirectToAction(nameof(this.ById), advertId);
         }
 

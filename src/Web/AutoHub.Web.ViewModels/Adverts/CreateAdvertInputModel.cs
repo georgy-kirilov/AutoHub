@@ -70,6 +70,9 @@
             ResourceType = typeof(Resource))]
         public bool IsNewImport { get; set; }
 
+        [Display(
+            Name = nameof(Resource.HasFourDoorsDisplayName),
+            ResourceType = typeof(Resource))]
         public bool HasFourDoors { get; set; }
 
         [Display(
