@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using AutoHub.Web.LanguageResources;
+
     public class ManufactureYearAttribute : ValidationAttribute
     {
         public override bool IsValid(object value)
@@ -16,7 +18,8 @@
             int minYear = ValidationConstraints.MinManufactureYear;
             int maxYear = DateTime.UtcNow.Year;
 
-            this.ErrorMessage = $"Годината трябва да бъде между {minYear} и {maxYear}";
+            this.ErrorMessage = string.Format(
+                Resource.InvalidRangeErrorMessageFormat, Resource.ManufactureYearDisplayName, minYear, maxYear);
 
             return year >= minYear && year <= maxYear;
         }

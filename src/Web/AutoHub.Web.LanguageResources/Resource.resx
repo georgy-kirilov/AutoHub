@@ -144,17 +144,20 @@
   <data name="ExampleTitle" xml:space="preserve">
     <value>e.g. Opel Astra - Red - Great Condition</value>
   </data>
+  <data name="FieldIsRequiredErrorMessageFormat" xml:space="preserve">
+    <value>{0} is required</value>
+  </data>
   <data name="HasFourDoorsDisplayName" xml:space="preserve">
     <value>Doors count</value>
   </data>
   <data name="HorsePowersDisplayName" xml:space="preserve">
     <value>Horse powers</value>
   </data>
-  <data name="HorsePowersOutOfRange" xml:space="preserve">
-    <value>Horse powers must be between {0} and {1}</value>
-  </data>
   <data name="InvalidMonthErrorMessage" xml:space="preserve">
     <value>Invalid month</value>
+  </data>
+  <data name="InvalidRangeErrorMessageFormat" xml:space="preserve">
+    <value>{0} must be between {1} and {2}</value>
   </data>
   <data name="IsExteriorMetallicDisplayName" xml:space="preserve">
     <value>Metallic exterior</value>
@@ -183,14 +186,17 @@
   <data name="RegionDisplayName" xml:space="preserve">
     <value>Region</value>
   </data>
+  <data name="StringExceedMaxLengthErrorMessageFormat" xml:space="preserve">
+    <value>{0} cannot exceed {1} characters</value>
+  </data>
+  <data name="StringLengthErrorMessageFormat" xml:space="preserve">
+    <value>{0} length must be between {2} and {1}</value>
+  </data>
   <data name="SuchItemDoesNotExistErrorMessageFormat" xml:space="preserve">
     <value>Such {0} does not exist</value>
   </data>
   <data name="TitleDisplayName" xml:space="preserve">
     <value>Title</value>
-  </data>
-  <data name="TitleIsRequired" xml:space="preserve">
-    <value>Title is required</value>
   </data>
   <data name="TownDisplayName" xml:space="preserve">
     <value>Town</value>

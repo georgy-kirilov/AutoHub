@@ -142,6 +142,15 @@ namespace AutoHub.Web.LanguageResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is required.
+        /// </summary>
+        public static string FieldIsRequiredErrorMessageFormat {
+            get {
+                return ResourceManager.GetString("FieldIsRequiredErrorMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Doors count.
         /// </summary>
         public static string HasFourDoorsDisplayName {
@@ -160,20 +169,20 @@ namespace AutoHub.Web.LanguageResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Horse powers must be between {0} and {1}.
-        /// </summary>
-        public static string HorsePowersOutOfRange {
-            get {
-                return ResourceManager.GetString("HorsePowersOutOfRange", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invalid month.
         /// </summary>
         public static string InvalidMonthErrorMessage {
             get {
                 return ResourceManager.GetString("InvalidMonthErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be between {1} and {2}.
+        /// </summary>
+        public static string InvalidRangeErrorMessageFormat {
+            get {
+                return ResourceManager.GetString("InvalidRangeErrorMessageFormat", resourceCulture);
             }
         }
         
@@ -259,6 +268,24 @@ namespace AutoHub.Web.LanguageResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} cannot exceed {1} characters.
+        /// </summary>
+        public static string StringExceedMaxLengthErrorMessageFormat {
+            get {
+                return ResourceManager.GetString("StringExceedMaxLengthErrorMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} length must be between {2} and {1}.
+        /// </summary>
+        public static string StringLengthErrorMessageFormat {
+            get {
+                return ResourceManager.GetString("StringLengthErrorMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Such {0} does not exist.
         /// </summary>
         public static string SuchItemDoesNotExistErrorMessageFormat {
@@ -273,15 +300,6 @@ namespace AutoHub.Web.LanguageResources {
         public static string TitleDisplayName {
             get {
                 return ResourceManager.GetString("TitleDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Title is required.
-        /// </summary>
-        public static string TitleIsRequired {
-            get {
-                return ResourceManager.GetString("TitleIsRequired", resourceCulture);
             }
         }
         
