@@ -2,180 +2,90 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using AutoHub.Common;
     using AutoHub.Common.Attributes;
     using AutoHub.Web.LanguageResources;
 
     using Microsoft.AspNetCore.Mvc.Rendering;
 
+    using static AutoHub.Common.ValidationConstraints;
+
     public class CreateAdvertInputModel
     {
-        [Display(
-            Name = nameof(Resource.TitleDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
-        [StringLength(
-            maximumLength: ValidationConstraints.MaxTitleLength,
-            MinimumLength = ValidationConstraints.MinTitleLength,
-            ErrorMessageResourceName = nameof(Resource.StringLengthErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [Display(Name = nameof(Resource.Title))]
+        [CustomStringLength(MinTitleLength, MaxTitleLength)]
+        [CustomRequired]
         public string Title { get; set; }
 
-        [Display(
-            Name = nameof(Resource.DescriptionDisplayName),
-            ResourceType = typeof(Resource))]
-        [StringLength(
-            maximumLength: ValidationConstraints.MaxDescriptionLength,
-            ErrorMessageResourceName = nameof(Resource.StringExceedMaxLengthErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [Display(Name = nameof(Resource.Description))]
+        [StringLength(MaxDescriptionLength)]
         public string Description { get; set; }
 
-        [Display(
-            Name = nameof(Resource.PriceDisplayName),
-            ResourceType = typeof(Resource))]
-        [Range(
-            minimum: ValidationConstraints.MinPrice,
-            maximum: ValidationConstraints.MaxPrice,
-            ErrorMessageResourceName = nameof(Resource.InvalidRangeErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [Display(Name = nameof(Resource.Price))]
+        [CustomRange(MinPrice, MaxPrice)]
         public decimal? Price { get; set; }
 
         [ManufactureYear]
-        [Display(
-            Name = nameof(Resource.ManufactureYearDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.ManufactureYear))]
         public int ManufactureYear { get; set; }
 
-        [Display(
-            Name = nameof(Resource.ManufactureMonthDisplayName),
-            ResourceType = typeof(Resource))]
-        [Range(
-            minimum: 1,
-            maximum: 12,
-            ErrorMessageResourceName = nameof(Resource.InvalidMonthErrorMessage),
-            ErrorMessageResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.ManufactureMonth))]
+        [CustomRange(minimum: 1, maximum: 12, ErrorMessage = nameof(Resource.InvalidMonthErrorMessage))]
         public int ManufactureMonth { get; set; }
 
-        [Display(
-            Name = nameof(Resource.KilometrageDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
-        [Range(
-            minimum: 0,
-            maximum: ValidationConstraints.MaxKilometrage,
-            ErrorMessageResourceName = nameof(Resource.InvalidRangeErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.Kilometrage))]
+        [CustomRange(minimum: 0, MaxKilometrage)]
         public long Kilometrage { get; set; }
 
-        [Display(
-            Name = nameof(Resource.HorsePowersDisplayName),
-            ResourceType = typeof(Resource))]
-        [Range(
-            minimum: 1,
-            maximum: ValidationConstraints.MaxHorsePowers,
-            ErrorMessageResourceName = nameof(Resource.InvalidRangeErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.HorsePowers))]
+        [CustomRange(minimum: 1, maximum: MaxHorsePowers)]
         public int HorsePowers { get; set; }
 
-        [Display(
-            Name = nameof(Resource.IsExteriorMetallicDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.IsExteriorMetallic))]
         public bool IsExteriorMetallic { get; set; }
 
-        [Display(
-            Name = nameof(Resource.IsNewImportDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.IsNewImport))]
         public bool IsNewImport { get; set; }
 
-        [Display(
-            Name = nameof(Resource.HasFourDoorsDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.HasFourDoors))]
         public bool HasFourDoors { get; set; }
 
-        [Display(
-            Name = nameof(Resource.ModelDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.Model))]
         public int ModelId { get; set; }
 
-        [Display(
-            Name = nameof(Resource.EngineDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.Engine))]
         public int EngineId { get; set; }
 
-        [Display(
-            Name = nameof(Resource.BodyStyleDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.BodyStyle))]
         public int BodyStyleId { get; set; }
 
-        [Display(
-            Name = nameof(Resource.TransmissionDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.Transmission))]
         public int TransmissionId { get; set; }
 
-        [Display(
-            Name = nameof(Resource.ColorDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.Color))]
         public int ColorId { get; set; }
 
-        [Display(
-            Name = nameof(Resource.TownDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.Town))]
         public int TownId { get; set; }
 
-        [Display(
-            Name = nameof(Resource.ConditionDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.Condition))]
         public int ConditionId { get; set; }
 
-        [Display(
-            Name = nameof(Resource.EuroStandardDisplayName),
-            ResourceType = typeof(Resource))]
-        [Required(
-            ErrorMessageResourceName = nameof(Resource.FieldIsRequiredErrorMessageFormat),
-            ErrorMessageResourceType = typeof(Resource))]
+        [CustomRequired]
+        [Display(Name = nameof(Resource.EuroStandard))]
         public int EuroStandardId { get; set; }
 
         public IEnumerable<SelectListItem> EngineItems { get; set; }

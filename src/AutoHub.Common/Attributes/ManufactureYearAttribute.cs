@@ -19,7 +19,7 @@
             int maxYear = DateTime.UtcNow.Year;
 
             this.ErrorMessage = string.Format(
-                Resource.InvalidRangeErrorMessageFormat, Resource.ManufactureYearDisplayName, minYear, maxYear);
+                Resource.InvalidRangeErrorMessageFormat, Resource.ManufactureYear, minYear, maxYear);
 
             return year >= minYear && year <= maxYear;
         }

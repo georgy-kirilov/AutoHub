@@ -1,5 +1,6 @@
 ﻿namespace AutoHub.Web
 {
+    using System.Globalization;
     using System.Reflection;
 
     using AutoHub.Data;
@@ -12,10 +13,13 @@
     using AutoHub.Services.Data;
     using AutoHub.Services.Mapping;
     using AutoHub.Services.Messaging;
+    using AutoHub.Web.LanguageResources;
     using AutoHub.Web.ViewModels;
-
+    using Microsoft.AspNetCore.Localization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Localization;
+    using Microsoft.Extensions.Options;
 
     public class Startup
     {
@@ -45,7 +49,17 @@
                 options =>
                     {
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-                    }).AddRazorRuntimeCompilation();
+                    }).AddRazorRuntimeCompilation()
+                    .AddDataAnnotationsLocalization(options =>
+                    {
+                        Type type = typeof(Resource);
+                        var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName);
+                        var factory = services.BuildServiceProvider().GetService<IStringLocalizerFactory>();
+                        var localizer = factory.Create("Resource", assemblyName.Name);
+                        options.DataAnnotationLocalizerProvider = (t, f) => localizer;
+                    });
+
+            AddLocalization(services);
 
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -90,6 +104,9 @@
             }
 
             app.UseHttpsRedirection();
+
+            UseLocalization(app);
+
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
@@ -105,6 +122,31 @@
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();
                     });
+        }
+
+        private static void AddLocalization(IServiceCollection services)
+        {
+            const string English = "en-US";
+            const string Bulgarian = "bg-BG";
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo(English),
+                    new CultureInfo(Bulgarian),
+                };
+
+                options.DefaultRequestCulture = new RequestCulture(culture: Bulgarian, uiCulture: Bulgarian);
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+        }
+
+        private static void UseLocalization(IApplicationBuilder app)
+        {
+            var localizeOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(localizeOptions.Value);
         }
     }
 }

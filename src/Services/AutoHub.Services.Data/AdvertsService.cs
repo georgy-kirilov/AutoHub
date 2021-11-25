@@ -147,5 +147,10 @@
 
             return advert;
         }
+
+        public Advert GetById(string id)
+        {
+            return this.advertsRepository.All().FirstOrDefault(a => a.Id.ToString() == id);
+        }
     }
 }

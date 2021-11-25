@@ -117,25 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BodyStyleDisplayName" xml:space="preserve">
+  <data name="BodyStyle" xml:space="preserve">
     <value>Body style</value>
   </data>
-  <data name="BrandDisplayName" xml:space="preserve">
+  <data name="Brand" xml:space="preserve">
     <value>Brand</value>
   </data>
-  <data name="ColorDisplayName" xml:space="preserve">
+  <data name="Color" xml:space="preserve">
     <value>Color</value>
   </data>
-  <data name="ConditionDisplayName" xml:space="preserve">
+  <data name="Condition" xml:space="preserve">
     <value>Condition</value>
   </data>
-  <data name="DescriptionDisplayName" xml:space="preserve">
+  <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="EngineDisplayName" xml:space="preserve">
+  <data name="Engine" xml:space="preserve">
     <value>Engine</value>
   </data>
-  <data name="EuroStandardDisplayName" xml:space="preserve">
+  <data name="EuroStandard" xml:space="preserve">
     <value>Euro standard</value>
   </data>
   <data name="ExampleDescription" xml:space="preserve">
@@ -147,10 +147,10 @@
   <data name="FieldIsRequiredErrorMessageFormat" xml:space="preserve">
     <value>{0} is required</value>
   </data>
-  <data name="HasFourDoorsDisplayName" xml:space="preserve">
+  <data name="HasFourDoors" xml:space="preserve">
     <value>Doors count</value>
   </data>
-  <data name="HorsePowersDisplayName" xml:space="preserve">
+  <data name="HorsePowers" xml:space="preserve">
     <value>Horse powers</value>
   </data>
   <data name="InvalidMonthErrorMessage" xml:space="preserve">
@@ -159,31 +159,31 @@
   <data name="InvalidRangeErrorMessageFormat" xml:space="preserve">
     <value>{0} must be between {1} and {2}</value>
   </data>
-  <data name="IsExteriorMetallicDisplayName" xml:space="preserve">
+  <data name="IsExteriorMetallic" xml:space="preserve">
     <value>Metallic exterior</value>
   </data>
-  <data name="IsNewImportDisplayName" xml:space="preserve">
+  <data name="IsNewImport" xml:space="preserve">
     <value>New import</value>
   </data>
-  <data name="KilometrageDisplayName" xml:space="preserve">
+  <data name="Kilometrage" xml:space="preserve">
     <value>Kilometrage</value>
   </data>
-  <data name="ManufactureMonthDisplayName" xml:space="preserve">
+  <data name="ManufactureMonth" xml:space="preserve">
     <value>Month</value>
   </data>
-  <data name="ManufactureYearDisplayName" xml:space="preserve">
+  <data name="ManufactureYear" xml:space="preserve">
     <value>Year</value>
   </data>
-  <data name="ModelDisplayName" xml:space="preserve">
+  <data name="Model" xml:space="preserve">
     <value>Model</value>
   </data>
-  <data name="PriceDisplayName" xml:space="preserve">
+  <data name="Price" xml:space="preserve">
     <value>Price</value>
   </data>
   <data name="PriceIsNegotiable" xml:space="preserve">
     <value>Price is negotiable</value>
   </data>
-  <data name="RegionDisplayName" xml:space="preserve">
+  <data name="Region" xml:space="preserve">
     <value>Region</value>
   </data>
   <data name="StringExceedMaxLengthErrorMessageFormat" xml:space="preserve">
@@ -195,13 +195,13 @@
   <data name="SuchItemDoesNotExistErrorMessageFormat" xml:space="preserve">
     <value>Such {0} does not exist</value>
   </data>
-  <data name="TitleDisplayName" xml:space="preserve">
+  <data name="Title" xml:space="preserve">
     <value>Title</value>
   </data>
-  <data name="TownDisplayName" xml:space="preserve">
+  <data name="Town" xml:space="preserve">
     <value>Town</value>
   </data>
-  <data name="TransmissionDisplayName" xml:space="preserve">
+  <data name="Transmission" xml:space="preserve">
     <value>Transmission</value>
   </data>
 </root>
